@@ -1,11 +1,25 @@
-# FastAPI Template
-dockerを用いてFastAPIを使用したプロジェクトを構築するときのためのテンプレートリポジトリ
+# Sekigae
+席替えサービス
 
-## Usage
-1. change the URL written in the package.json
-2. create fastapi.env with reference to fastapi.env.tmpl
-3. create postgres.env with reference to postgres.env.tmpl
-4. `python -m venv venv`
-5. `source venv/bin/activate`
-6. `pip install -r requirements.txt`
-7. change this README.md
+## Steps development at first time
+1. clone this repository
+1. `cd sekigae`
+1. `npm install`
+1. pythonの仮想環境を作成
+    1. `python -m venv venv`
+    1. `source venv/bin/activate`
+    1. `pip install -r requirements.txt`
+1. 環境変数ファイルを追加 (tmplを参考に作成し、足りない情報はslackで確認)
+    - add fastapi/fastapi.env
+    - add postgres/postgres.env
+1. docker containerを起動
+    1. `source env.sh`
+    1. `build`
+    1. `docker-compose run --entrypoint "poetry install" fastapi`
+    1. `up`
+
+## Steps development after first setup
+1. `cd sekigae`
+1. `source venv/bin/activate`
+1. `source env.sh`
+1. `up`
