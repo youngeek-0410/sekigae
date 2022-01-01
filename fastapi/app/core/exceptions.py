@@ -28,6 +28,10 @@ class ExpiredToken(BaseError):
     detail = "Token was expired."
 
 
+class FirebaseUidOrPasswordMustBeSet(BaseError):
+    detail = "Firebase uid or password must be set."
+
+
 BaseErrorInstanceType = TypeVar("BaseErrorInstanceType", bound=BaseError)
 
 

@@ -9,3 +9,11 @@ class PaswordLoginSchema:
     ):
         self.email = username
         self.password = password
+
+
+class FirebaseLoginSchema:
+    def __init__(
+        self,
+        idtoken: str = Form(...),
+    ):
+        self.idtoken = idtoken
