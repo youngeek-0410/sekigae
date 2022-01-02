@@ -47,6 +47,7 @@ class BaseCRUD:
         self.db_session.refresh(obj)
         return obj
 
+    # FIXME: 論理消去だとUnique制約でエラーが起こる場合があるので要改善
     def delete_by_uuid(self, uuid: UUID) -> None:
         obj = self.get_by_uuid(uuid)
         if not obj:

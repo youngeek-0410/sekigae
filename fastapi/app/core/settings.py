@@ -29,6 +29,9 @@ class Settings(BaseSettings):
     )
     jwt_algorithm: str = "HS256"
 
+    # firebase
+    firebase_credentials_path: str = "/src/firebase_credentials.json"
+
     class Config:
         env_file = os.path.join(BASE_DIR, "fastapi.env")
 

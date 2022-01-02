@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 
 class BaseUserSchema(BaseModel):
     email: str = Field(..., regex=r"[^\s]+@[^\s]+")
+    firebase_uid: Optional[str] = Field(None, max_length=User.MAX_LENGTH_FIREBASE_UID)
 
     class Config:
         orm_mode = True
@@ -21,10 +22,6 @@ class UpdateUserSchema(BaseUserSchema):
 
 
 class ReadUserSchema(BaseUserSchema):
-    uuid: UUID
-
-
-class ReadSimpleUserSchema(BaseUserSchema):
     uuid: UUID
 
 
