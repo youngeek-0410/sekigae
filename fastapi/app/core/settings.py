@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta, timezone
 from functools import lru_cache
 from pathlib import Path
 
@@ -31,6 +32,9 @@ class Settings(BaseSettings):
 
     # firebase
     firebase_credentials_path: str = "/src/firebase_credentials.json"
+
+    # timezone
+    default_timezone = timezone(timedelta(hours=+9), "JST")
 
     class Config:
         env_file = os.path.join(BASE_DIR, "fastapi.env")
