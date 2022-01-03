@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/youngeek-0410/fastapi-template.git"
+    "url": "git+https://github.com/youngeek-0410/sekigae.git"
   },
   "author": "kathmandu777",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/youngeek-0410/fastapi-template/issues"
+    "url": "https://github.com/youngeek-0410/sekigae.git/issues"
   },
-  "homepage": "https://github.com/youngeek-0410/fastapi-template#readme",
+  "homepage": "https://github.com/youngeek-0410/sekigae.git#readme",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
