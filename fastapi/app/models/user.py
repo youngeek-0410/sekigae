@@ -1,4 +1,5 @@
 from sqlalchemy import BOOLEAN, VARCHAR, Column, String
+from sqlalchemy.orm import relationship
 
 from .base import BaseModelMixin
 
@@ -14,3 +15,5 @@ class User(BaseModelMixin):
     firebase_uid = Column(VARCHAR(MAX_LENGTH_FIREBASE_UID), unique=True, nullable=True)
 
     is_admin = Column(BOOLEAN, nullable=False, default=False)
+
+    student_sheets = relationship("StudentSheet", backref="user", cascade="all")
