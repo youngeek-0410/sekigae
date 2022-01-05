@@ -5,7 +5,12 @@ from app.db.database import get_db_session
 from app.models import User
 from sqlalchemy.orm import scoped_session
 
-from ..core.exceptions import ApiException, FirebaseUidOrPasswordMustBeSet, create_error
+from ..core.exceptions import (
+    ApiException,
+    FirebaseUidOrPasswordMustBeSet,
+    NotFoundObjectMatchingUuid,
+    create_error,
+)
 from ..core.security import get_password_hash
 from .base import BaseCRUD
 
@@ -33,11 +38,11 @@ class UserCRUD(BaseCRUD):
 
     def update(self, uuid: UUID, data: dict = {}) -> User:
         # FIXME: セキュリティ的に、そのメールアドレスのユーザーが存在することを伝えるのはよくない?
-        if (
-            self.get_by_uuid(uuid) is not None
-            and data["email"] != self.get_by_uuid(uuid).email
-            and self.get_query().filter_by(email=data["email"]).first()
-        ):
+        update_obj = self.get_by_uuid(uuid)
+        if update_obj is None:
+            raise ApiException(NotFoundObjectMatchingUuid(self.model, uuid))
+        new_data_obj = self.get_query().filter_by(email=data["email"]).first()
+        if new_data_obj is not None and new_data_obj.uuid != update_obj.uuid:
             raise ApiException(
                 create_error(f"User with email {data['email']} already exists")
             )
