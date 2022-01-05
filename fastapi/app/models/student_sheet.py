@@ -1,5 +1,6 @@
 from sqlalchemy import VARCHAR, Column, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
 from sqlalchemy.schema import UniqueConstraint
 
 from .base import BaseModelMixin
@@ -17,3 +18,5 @@ class StudentSheet(BaseModelMixin):
         ForeignKey("users.uuid", ondelete="CASCADE"),
         nullable=False,
     )
+
+    students = relationship("Student", backref="student_sheet", cascade="all")
