@@ -15,9 +15,9 @@ services:
     links:
       - postgres
   postgres:
-    image: postgres
+    image: postgres:12
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - pq_data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: fastapi
       POSTGRES_PASSWORD: fastapi
@@ -25,4 +25,4 @@ services:
     ports:
       - 5433:5432
 volumes:
-  db_data:
+  pq_data:
