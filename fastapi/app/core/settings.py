@@ -11,10 +11,10 @@ class Settings(BaseSettings):
     debug: bool = True
 
     # database
-    db_name: str = "barifac"
-    db_host: str = "postgres"
-    db_user: str = "postgres"
-    db_password: str = "password"
+    db_name: str = os.getenv("DB_NAME", "barifac")
+    db_host: str = os.getenv("DB_HOST", "postgres")
+    db_user: str = os.getenv("DB_USER", "postgres")
+    db_password: str = os.getenv("DB_PASSWORD", "password")
     db_engine: str = "postgresql+psycopg2"
 
     # cors
