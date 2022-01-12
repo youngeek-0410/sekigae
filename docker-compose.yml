@@ -6,15 +6,23 @@ services:
       - ./fastapi:/src
     ports:
       - 8000:8000
-    env_file: ./fastapi/fastapi.env
-    depends_on:
+    environment:
+      DB_NAME: sekigae
+      DB_USER: fastapi
+      DB_PASSWORD: fastapi
+      DB_HOST: postgres
+      DB_PORT: 5433
+    links:
       - postgres
   postgres:
-    build: ./postgres
+    image: postgres:12
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-    env_file: ./postgres/postgres.env
+      - pq_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: fastapi
+      POSTGRES_PASSWORD: fastapi
+      POSTGRES_DB: sekigae
     ports:
-      - 5432:5432
+      - 5433:5432
 volumes:
-  postgres_data:
+  pq_data:

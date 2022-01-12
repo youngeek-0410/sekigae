@@ -11,11 +11,10 @@ class Settings(BaseSettings):
     debug: bool = True
 
     # database
-    db_name: str = "barifac"
-    db_host: str = "postgres"
-    db_port: int = 5432
-    db_user: str = "postgres"
-    db_password: str = "password"
+    db_name: str = os.getenv("DB_NAME", "barifac")
+    db_host: str = os.getenv("DB_HOST", "postgres")
+    db_user: str = os.getenv("DB_USER", "postgres")
+    db_password: str = os.getenv("DB_PASSWORD", "password")
     db_engine: str = "postgresql+psycopg2"
 
     # cors
@@ -38,7 +37,7 @@ class Settings(BaseSettings):
     @property
     def db_url(self):
         s = Settings()
-        return f"{s.db_engine}://{s.db_user}:{s.db_password}@{s.db_host}:{str(s.db_port)}/{s.db_name}"
+        return f"{s.db_engine}://{s.db_user}:{s.db_password}@{s.db_host}/{s.db_name}"
 
 
 @lru_cache
