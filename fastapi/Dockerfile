@@ -6,3 +6,4 @@ ENV PYTHONDONTWRITEBYTECODE 1
 WORKDIR /src
 
 RUN pip install poetry
+RUN poetry config virtualenvs.in-project true
